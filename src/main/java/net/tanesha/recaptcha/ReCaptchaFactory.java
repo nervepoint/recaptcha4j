@@ -15,23 +15,27 @@
  */
 package net.tanesha.recaptcha;
 
+import net.tanesha.recaptcha.ReCaptcha.Version;
+
 public class ReCaptchaFactory {
 
-	public static ReCaptcha newReCaptcha(String publicKey, String privateKey, boolean includeNoscript) {
+	public static ReCaptcha newReCaptcha(String publicKey, String privateKey, boolean includeNoscript, Version version) {
 		ReCaptchaImpl recaptcha = new ReCaptchaImpl();
 		recaptcha.setIncludeNoscript(includeNoscript);
 		recaptcha.setPrivateKey(privateKey);
 		recaptcha.setPublicKey(publicKey);
-		recaptcha.setRecaptchaServer(ReCaptchaImpl.HTTP_SERVER);
+		recaptcha.setHttps(false);
+		recaptcha.setVersion(version);
 		return recaptcha;
 	}
 
-	public static ReCaptcha newSecureReCaptcha(String publicKey, String privateKey, boolean includeNoscript) {
+	public static ReCaptcha newSecureReCaptcha(String publicKey, String privateKey, boolean includeNoscript, Version version) {
 		ReCaptchaImpl recaptcha = new ReCaptchaImpl();
 		recaptcha.setIncludeNoscript(includeNoscript);
 		recaptcha.setPrivateKey(privateKey);
 		recaptcha.setPublicKey(publicKey);
-		recaptcha.setRecaptchaServer(ReCaptchaImpl.HTTPS_SERVER);
+		recaptcha.setHttps(true);
+		recaptcha.setVersion(version);
 		return recaptcha;
 	}
 }
