@@ -95,7 +95,8 @@ public class ReCaptchaImpl implements ReCaptcha {
 								+ URLEncoder.encode(response, "UTF-8"));
 				if (message != null) {
 					JSONObject obj = (JSONObject) JSONValue.parse(message);
-					valid = (Boolean) obj.getOrDefault("success", false);
+					valid = Boolean.TRUE.equals((Boolean) obj.get("success"));
+					
 					JSONArray arr = (JSONArray) obj.get("error-codes");
 					if (arr != null) {
 						StringBuilder b = new StringBuilder();
